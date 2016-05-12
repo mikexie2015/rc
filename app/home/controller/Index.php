@@ -1,10 +1,19 @@
 <?php
+
 namespace app\home\controller;
 
-class Index
-{
-    public function index()
-    {
-        echo '这是前台';
+use think\Controller;
+use think\Db;
+
+class Index extends Controller {
+
+    public function index() {
+        $hooks=Db::table('hooks')->field('name,addons')->select();
+//        p($hooks);
+        $this->assign([
+            'hooks'=>$hooks,
+        ]);
+        return $this->fetch();
     }
+
 }
