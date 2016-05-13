@@ -8,12 +8,14 @@
 namespace app\common\controller;
 
 use think\Controller;
+use think\Session;
 
 class Base extends Controller {
 
-    function _initialize() {
-        if (!session('uid') || !session('username')) {
-            return $this->redirect('admin/Index/login');
+    public function _initialize() {
+//        d(Session::get());
+        if (!session('uid') || !session('user')) {
+            return $this->redirect('admin/login/login');
         }
     }
 
