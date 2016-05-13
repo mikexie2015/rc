@@ -2,10 +2,10 @@
 
 namespace app\admin\controller;
 
-use app\common\controller\Common;
+use app\common\controller\Base;
 use think\Session;
 
-class Index extends Common {
+class Index extends Base {
 
     function index() {
         dump(\think\Session::get());
@@ -39,8 +39,8 @@ class Index extends Common {
     }
 
     function logout() {
-        \think\Session::destroy();
-        return $this->redirect('login');
+        Session::clear();
+        return $this->redirect('index');
     }
 
 }
