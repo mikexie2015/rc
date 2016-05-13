@@ -17,4 +17,9 @@ return [
         'type' => 'trace', // 支持 socket trace file
     ],
     'default_module' => 'home',
+    'session' => [
+        'prefix' => 'rc',
+        'type' => '',
+        'auto_start' => true,
+    ],
 ];
