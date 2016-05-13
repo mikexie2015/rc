@@ -1,4 +1,5 @@
 <?php
+
 // +----------------------------------------------------------------------
 // | ThinkPHP [ WE CAN DO IT JUST THINK ]
 // +----------------------------------------------------------------------
@@ -12,8 +13,8 @@
 
 return [
     'url_route_on' => true,
-    'log'          => [
+    'log' => [
         'type' => 'trace', // 支持 socket trace file
     ],
-    'default_module'=>'home',
+    'default_module' => 'home',
 ];

@@ -1,0 +1,30 @@
+/*
+Copyright (c) 2013 rc All rights reserved.
+ Author: Mike 
+*/
+.main{
+    padding: 5px;
+    height: 410px;
+}
+.fl{
+    float: left;
+}
+.fr{
+    float: right;
+}
+.login-ad{
+    height: 400px;
+    width: 800px;
+    margin-left: 3%;
+}
+.login{
+    margin-right: 3%;
+    width: 300px;
+    padding-right: 3%;
+}
+.br{
+    border:solid;
+}
+#btn{
+    text-align: center;
+}

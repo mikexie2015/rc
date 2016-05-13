@@ -15,8 +15,8 @@ class Login extends Controller {
     function index() {
         if ($_POST) {
             p($_POST);
+            
         } else {
-            echo VIEW_PATH;
             return $this->fetch();
         }
     }
