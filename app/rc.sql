@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2016-05-13 10:31:37
+Date: 2016-05-13 17:24:04
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -138,11 +138,12 @@ CREATE TABLE `member` (
   `loginip` varchar(255) DEFAULT NULL,
   `status` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of member
 -- ----------------------------
+INSERT INTO `member` VALUES ('1', 'admin', '123456', '0000-00-00 00:00:00', '::1', null);
 
 -- ----------------------------
 -- Table structure for product
