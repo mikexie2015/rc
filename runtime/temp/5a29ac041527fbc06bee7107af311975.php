@@ -1,0 +1,63 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:56:"D:\wamp\www\rc\public/../app/admin\view\login\index.html";i:1463110082;s:56:"D:\wamp\www\rc\public/../app/admin\view\public\base.html";i:1463110465;}*/ ?>
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="__Css/global.css"></script>
+        
+<title>登陆</title>
+
+    </head>
+    <body>
+        
+<div class="container">
+    <h2>用户登录</h2>
+    <p><span><span class="pull-left"><span>还没有账号? <a href="<?php echo url('User/register'); ?>">立即注册</a></span> </span></p>
+</div>
+<div class="span12">
+    <form class="login-form" action="__SELF__" method="post">
+        <div class="control-group">
+            <label class="control-label" for="inputEmail">用户名</label>
+            <div class="controls">
+                <input type="text" id="inputEmail" class="span3" placeholder="请输入用户名"  ajaxurl="/member/checkUserNameUnique.html" errormsg="请填写1-16位用户名" nullmsg="请填写用户名" datatype="*1-16" value="" name="username">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputPassword">密码</label>
+            <div class="controls">
+                <input type="password" id="inputPassword"  class="span3" placeholder="请输入密码"  errormsg="密码为6-20位" nullmsg="请填写密码" datatype="*6-20" name="password">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputPassword">验证码</label>
+            <div class="controls">
+                <input type="text" id="inputPassword" class="span3" placeholder="请输入验证码"  errormsg="请填写5位验证码" nullmsg="请填写验证码" datatype="*5-5" name="verify">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label"></label>
+            <div class="controls">
+                <img class="verifyimg reloadverify" alt="点击切换" src="<?php echo url('verify'); ?>" style="cursor:pointer;">
+            </div>
+            <div class="controls Validform_checktip text-warning"></div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <label class="checkbox">
+                    <input type="checkbox"> 自动登陆
+                </label>
+                <button type="submit" class="btn">登 陆</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+    </body>
+</html>
