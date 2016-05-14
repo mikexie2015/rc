@@ -13,9 +13,8 @@ use think\Session;
 class Base extends Controller {
 
     public function _initialize() {
-//        d(Session::get());
         if (!session('uid') || !session('user')) {
-            return $this->redirect('admin/login/login');
+            return $this->error('还未登陆，请登录', url('admin/login/login'));
         }
     }
 
