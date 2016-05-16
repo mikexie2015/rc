@@ -8,10 +8,10 @@ use think\Db;
 class Index extends Controller {
 
     public function index() {
-        $hooks=Db::table('hooks')->field('name,addons')->select();
+        $hooks = Db::table('hooks')->field('name,addons')->select();
 //        p($hooks);
         $this->assign([
-            'hooks'=>$hooks,
+            'hooks' => $hooks,
         ]);
         return $this->fetch();
     }

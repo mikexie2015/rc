@@ -14,7 +14,7 @@ class Login extends Controller {
 
     public function login() {
         if ($_POST) {
-            $user = m('member')->where('username', input('username'))->find();
+            $user = m('user')->where('username', input('username'))->find();
             if ($user) {
                 if (input('password') == $user['pwd']) {
                     $update = [
@@ -25,7 +25,7 @@ class Login extends Controller {
                     session('user', $user['username']);
                     session('ip', $update['loginip']);
                     session('time', $update['logintime']);
-                    m('member')->where('username', $user['username'])->update($update);
+                    m('user')->where('username', $user['username'])->update($update);
                     return $this->success('登陆成功', url('index/index'));
                 } else {
                     return $this->error('密码错误', 'login');

@@ -167,6 +167,7 @@ class Auth {
      * 获得权限列表
      * @param integer $uid  用户id
      * @param integer $type
+     * @return array 返回数组
      */
     protected function getAuthList($uid, $type) {
         static $_authList = array(); //保存用户验证通过的权限列表

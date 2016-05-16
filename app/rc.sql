@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2016-05-13 17:24:04
+Date: 2016-05-16 16:42:37
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -54,11 +54,12 @@ CREATE TABLE `auth_group` (
   `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '为1正常，为0禁用',
   `rules` char(80) NOT NULL DEFAULT '' COMMENT '用户组拥有的规则id， 多个规则","隔开',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of auth_group
 -- ----------------------------
+INSERT INTO `auth_group` VALUES ('1', '管理员', '1', '1,2,3,4');
 
 -- ----------------------------
 -- Table structure for auth_group_access
@@ -75,6 +76,7 @@ CREATE TABLE `auth_group_access` (
 -- ----------------------------
 -- Records of auth_group_access
 -- ----------------------------
+INSERT INTO `auth_group_access` VALUES ('1', '1');
 
 -- ----------------------------
 -- Table structure for auth_rule
@@ -89,11 +91,12 @@ CREATE TABLE `auth_rule` (
   `condition` char(100) NOT NULL DEFAULT '' COMMENT '规则表达式，为空表示存在就验证，不为空表示按照条件验证,# 规则附件条件,满足附加条件的规则,才认为是有效的规则',
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of auth_rule
 -- ----------------------------
+INSERT INTO `auth_rule` VALUES ('1', 'Admin/Index/index', '后台首页', '1', '1', '');
 
 -- ----------------------------
 -- Table structure for hooks
@@ -127,25 +130,6 @@ INSERT INTO `hooks` VALUES ('14', 'topicComment', '评论提交方式扩展钩�
 INSERT INTO `hooks` VALUES ('16', 'app_begin', '应用开始', '2', '1384481614', '', '1');
 
 -- ----------------------------
--- Table structure for member
--- ----------------------------
-DROP TABLE IF EXISTS `member`;
-CREATE TABLE `member` (
-  `uid` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(255) DEFAULT NULL,
-  `pwd` varchar(255) DEFAULT NULL,
-  `logintime` datetime DEFAULT NULL,
-  `loginip` varchar(255) DEFAULT NULL,
-  `status` tinyint(4) DEFAULT NULL,
-  PRIMARY KEY (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-
--- ----------------------------
--- Records of member
--- ----------------------------
-INSERT INTO `member` VALUES ('1', 'admin', '123456', '0000-00-00 00:00:00', '::1', null);
-
--- ----------------------------
 -- Table structure for product
 -- ----------------------------
 DROP TABLE IF EXISTS `product`;
@@ -161,3 +145,22 @@ CREATE TABLE `product` (
 -- ----------------------------
 -- Records of product
 -- ----------------------------
+
+-- ----------------------------
+-- Table structure for user
+-- ----------------------------
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
+  `uid` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) DEFAULT NULL,
+  `pwd` varchar(255) DEFAULT NULL,
+  `logintime` datetime DEFAULT NULL,
+  `loginip` varchar(255) DEFAULT NULL,
+  `status` tinyint(4) DEFAULT NULL,
+  PRIMARY KEY (`uid`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+-- ----------------------------
+-- Records of user
+-- ----------------------------
+INSERT INTO `user` VALUES ('1', 'admin', '123456', '0000-00-00 00:00:00', '::1', null);
