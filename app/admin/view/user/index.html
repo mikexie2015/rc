@@ -1,0 +1,23 @@
+{extend name='public/base' /}
+{block name="head"}
+<title>用户管理</title>
+{css href="__Css/style.css" /}
+{/block}
+{block name="body"}
+<center>
+    <table border="1">
+        <tr>
+            <th>用户ID</th>
+            <th>用户名</th>
+            <th>操作</th>
+        </tr>
+        {volist name="user" id="vo"}
+        <tr>
+            <td class="id">{$vo.uid}</td>
+            <td class="name">{$vo.username}</td>
+            <td class="act"><a href="{:url('')}"><span>编辑</span></a><a href="{:url('')}"><span>权限</span></a><a href="{:url('')}"><span>删除</span></a></td>
+        </tr>
+        {/volist}
+    </table>
+</center>
+{/block}

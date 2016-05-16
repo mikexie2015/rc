@@ -1,0 +1,17 @@
+/*
+Copyright (c) 2013 rc All rights reserved.
+ Author: Mike 
+*/
+/* 
+    Created on : May 16, 2016, 4:58:19 PM
+    Author     : Administrator
+*/
+table{
+    width: 60%;
+}
+td{
+    text-align: center;
+}
+td span{
+    margin:0 5px;
+}
