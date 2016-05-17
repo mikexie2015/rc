@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:56:"D:\wamp\www\rc\public/../app/admin\view\login\index.html";i:1463120843;s:56:"D:\wamp\www\rc\public/../app/admin\view\public\base.html";i:1463119364;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:56:"D:\wamp\www\rc\public/../app/admin\view\login\index.html";i:1463469467;s:56:"D:\wamp\www\rc\public/../app/admin\view\public\base.html";i:1463471385;}*/ ?>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -13,6 +13,7 @@ and open the template in the editor.
         <script type="text/javascript" src="__Js/common.js"></script>
         <link rel="stylesheet" type="text/css" href="__Pub/css/bootstrap.css" />
         <link rel="stylesheet" type="text/css" href="__Pub/css/docs.css" />
+        <link rel="stylesheet" type="text/css" href="__Pub/css/global.css" />
         <script type="text/javascript" src="__Pub/js/global.js"></script>
         <script type="text/javascript" src="__Pub/jquery-2.0.3.min.js"></script>
         
@@ -21,6 +22,17 @@ and open the template in the editor.
 
     </head>
     <body>
+        <div class="topBar">
+            <div class="userBar">
+                <ul>
+                    <li>你好，冯康的发放<em title="<?php echo session('user'); ?>"><?php echo session('user'); ?></em></li>
+                    <li><a href="<?php echo url(''); ?>">修改密码</a></li>
+                    <li><a href="<?php echo url(''); ?>">修改昵称</a></li>
+                    <li><a href="<?php echo url(''); ?>">退出</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="clearfix"></div>
         
 <div class='main'>
     <div class="login-ad fl">
@@ -60,9 +72,9 @@ and open the template in the editor.
                                 </div>-->
                 <div class="control-group">
                     <div class="controls" id='btn'>
-<!--                        <label class="checkbox">
-                            <input type="checkbox"> 自动登陆
-                        </label>-->
+                        <!--                        <label class="checkbox">
+                                                    <input type="checkbox"> 自动登陆
+                                                </label>-->
                         <button type="submit" class="btn" >登 陆</button>
                     </div>
                 </div>

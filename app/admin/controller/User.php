@@ -3,11 +3,11 @@
 namespace app\admin\controller;
 
 use think\Controller;
-
-class User extends Controller {
+use app\common\controller\Base;
+class User extends Base {
 
     public function index() {
-        $user = db('user')->select();
+        $user = db('member')->select();
         $this->assign([
             'user' => $user,
         ]);

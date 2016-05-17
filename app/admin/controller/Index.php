@@ -8,7 +8,7 @@ use think\Session;
 class Index extends Base {
 
     public function index() {
-        dump(Session::get());
+//        dump(Session::get());
         return $this->fetch();
     }
 

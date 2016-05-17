@@ -21,5 +21,10 @@ return [
         'prefix' => 'rc',
         'type' => '',
         'auto_start' => true,
+        'expire' => 1800,
     ],
+    //默认错误跳转对应的模板文件
+//    'dispatch_error_tmpl' => ROOT_PATH . 'public/tpl/error.html',
+////默认成功跳转对应的模板文件
+//    'dispatch_success_tmpl' => ROOT_PATH . 'public/tpl/success.html',
 ];

@@ -15,3 +15,21 @@ td{
 td span{
     margin:0 5px;
 }
+.topBar{
+    /*height: 30px;*/
+    width: 100%;
+    position: fixed;
+    top: 0;
+    padding: 10px 0;
+    background-color: #F8F8F8;
+}
+.topBar li {
+    list-style: none;   
+    float: right;
+    margin: 0 5px;
+    white-space: nowrap;
+}
+.userBar{
+    float:right;
+    margin: 0 5%;
+}

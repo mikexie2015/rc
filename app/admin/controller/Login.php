@@ -12,11 +12,11 @@ use think\Controller;
 
 class Login extends Controller {
 
-    public function login() {
+    public function index() {
         if ($_POST) {
-            $user = m('user')->where('username', input('username'))->find();
+            $user = m('member')->where('username', input('username'))->find();
             if ($user) {
-                if (input('password') == $user['pwd']) {
+                if (md5(input('password')) == $user['pwd']) {
                     $update = [
                         'logintime' => time(),
                         'loginip' => getClientIp(),
@@ -25,13 +25,13 @@ class Login extends Controller {
                     session('user', $user['username']);
                     session('ip', $update['loginip']);
                     session('time', $update['logintime']);
-                    m('user')->where('username', $user['username'])->update($update);
+                    m('member')->where('username', $user['username'])->update($update);
                     return $this->success('登陆成功', url('index/index'));
                 } else {
-                    return $this->error('密码错误', 'login');
+                    return $this->error('密码错误', 'index');
                 }
             } else {
-                return $this->error('用户不存在', 'login');
+                return $this->error('用户不存在', 'index');
             }
         } else {
             return $this->fetch();

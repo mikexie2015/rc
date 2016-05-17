@@ -1,27 +1,9 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:56:"D:\wamp\www\rc\public/../app/admin\view\index\login.html";i:1463120843;s:56:"D:\wamp\www\rc\public/../app/admin\view\public\base.html";i:1463119364;}*/ ?>
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="__Css/common.css" />
-        <script type="text/javascript" src="__Js/common.js"></script>
-        <link rel="stylesheet" type="text/css" href="__Pub/css/bootstrap.css" />
-        <link rel="stylesheet" type="text/css" href="__Pub/css/docs.css" />
-        <script type="text/javascript" src="__Pub/js/global.js"></script>
-        <script type="text/javascript" src="__Pub/jquery-2.0.3.min.js"></script>
-        
+{extend name='public/base' /}
+{block name="head"}
 <title>登陆</title>
-<link rel="stylesheet" type="text/css" href="__Css/style.css" />
-
-    </head>
-    <body>
-        
+{css href="__Css/style.css" /}
+{/block}
+{block name="body"}
 <div class='main'>
     <div class="login-ad fl">
         <a href=""><img style="width: 800px;height: 400px;" src="http://pub.chinaunix.net/uploadfile/201204/20120422043659419.jpg"></a>
@@ -29,7 +11,7 @@ and open the template in the editor.
     <div class="login fr">
         <div class="login-head">
             <h2>用户登录</h2>
-            <p><span><span class="pull-left"><span>还没有账号? <a href="<?php echo url('User/register'); ?>">立即注册</a></span> </span></p>
+            <p><span><span class="pull-left"><span>还没有账号? <a href="{:url('User/register')}">立即注册</a></span> </span></p>
         </div>
         <div class="login-box">
             <form class="login-form" action="__SELF" method="post">
@@ -54,15 +36,15 @@ and open the template in the editor.
                                 <div class="control-group">
                                     <label class="control-label"></label>
                                     <div class="controls">
-                                        <img class="verifyimg reloadverify" alt="点击切换" src="<?php echo url('verify'); ?>" style="cursor:pointer;">
+                                        <img class="verifyimg reloadverify" alt="点击切换" src="{:url('verify')}" style="cursor:pointer;">
                                     </div>
                                     <div class="controls Validform_checktip text-warning"></div>
                                 </div>-->
                 <div class="control-group">
                     <div class="controls" id='btn'>
-<!--                        <label class="checkbox">
-                            <input type="checkbox"> 自动登陆
-                        </label>-->
+                        <!--                        <label class="checkbox">
+                                                    <input type="checkbox"> 自动登陆
+                                                </label>-->
                         <button type="submit" class="btn" >登 陆</button>
                     </div>
                 </div>
@@ -72,6 +54,4 @@ and open the template in the editor.
 </div>
 
 
-
-    </body>
-</html>
+{/block}
