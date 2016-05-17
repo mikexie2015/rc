@@ -20,8 +20,10 @@ td span{
     width: 100%;
     position: fixed;
     top: 0;
-    padding: 10px 0;
-    background-color: #F8F8F8;
+    padding: 6px 0;
+    border: 2px white solid;
+    background-color: #FFFFFF;
+    margin: 2px 0;
 }
 .topBar li {
     list-style: none;   
@@ -32,4 +34,19 @@ td span{
 .userBar{
     float:right;
     margin: 0 5%;
+}
+.content{
+    padding: 5px;
+    /*height: 410px;*/
+}
+.sideBar{
+    width: 20%;
+    border: 3px white solid;
+    /*float: left;*/
+}
+.content{
+    border: 3px white solid;
+}
+.main{
+    width: 70%;
 }

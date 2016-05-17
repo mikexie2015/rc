@@ -23,7 +23,7 @@ and open the template in the editor.
         <div class="topBar">
             <div class="userBar">
                 <ul>
-                    <li>你好，冯康的发放<em title="{:session('user')}">{:session('user')}</em></li>
+                    <li>你好，<a><em style='font-size:16' title="{:session('user')}">{:session('user')}</em></a></li>
                     <li><a href="{:url('')}">修改密码</a></li>
                     <li><a href="{:url('')}">修改昵称</a></li>
                     <li><a href="{:url('')}">退出</a></li>
@@ -31,8 +31,16 @@ and open the template in the editor.
             </div>
         </div>
         <div class="clearfix"></div>
-        {block name="body"}
+        <div class="content">
 
-        {/block}
+            {block name="sidebar"}
+
+            {/block}
+            <div class='main'>
+                {block name="body"}
+
+                {/block}
+            </div>
+        </div>
     </body>
 </html>

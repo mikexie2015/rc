@@ -2,26 +2,11 @@
 Copyright (c) 2013 rc All rights reserved.
  Author: Mike 
 */
-.main{
-    padding: 5px;
-    height: 410px;
-}
 .fl{
     float: left;
 }
 .fr{
     float: right;
-}
-.login-ad{
-    height: 400px;
-    width: 800px;
-    margin-left: 3%;
-}
-.login{
-    margin-right: 3%;
-    width: 300px;
-    height: 300px;
-    padding-right: 3%;
 }
 .br{
     border:solid;
@@ -30,5 +15,28 @@ Copyright (c) 2013 rc All rights reserved.
     text-align: center;
 }
 .login-ad{
-    border:3px black #C6C6C6;
+    border: 4px white solid;
+    border-radius: 10px;
+    height: 400px;
+    width: 800px;
+    margin-left: 3%;
+}
+.login-ad img{
+    border-radius: 10px;
+}
+.login{
+    /*border: 2px white solid;*/
+    padding-left: 10px;
+    text-align: center;
+    margin-right: 2%;
+    width: 300px;
+    height: 300px;
+    padding-right: 3%;
+}
+.loginHhead{
+    /*text-align: center;*/
+}
+.controls input{
+    width: 300px;
+    height: 40px;
 }
