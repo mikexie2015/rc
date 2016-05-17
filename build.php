@@ -37,4 +37,10 @@ return [
         'controller' => ['Index', 'Test', 'UserType'],
         'model' => ['User', 'UserType'],
     ],
+     'test' => [
+        '__dir__' => ['behavior', 'controller', 'model', 'view'],
+        'controller' => ['Index', 'Test', 'UserType'],
+        'model' => ['User', 'UserType'],
+    ],
+    
 ];

@@ -42,11 +42,11 @@ td span{
 .sideBar{
     width: 20%;
     border: 3px white solid;
-    /*float: left;*/
+    float: left;
 }
 .content{
     border: 3px white solid;
 }
 .main{
-    width: 70%;
+    width: auto;
 }
