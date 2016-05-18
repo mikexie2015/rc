@@ -12,13 +12,12 @@
 // [ 应用入口文件 ]
 
 // 定义应用目录
-define('APP_PATH', __DIR__ . '/../app/');
+define('APP_PATH', __DIR__ . '/app/');
 // 开启调试模式
 define('APP_DEBUG', true);
-define('RUNTIME_PATH', __DIR__.'/../runtime/');
+define('RUNTIME_PATH', __DIR__.'/runtime/');
 define('APP_HOOK', TRUE);
-define('__ROOT', '/rc');
 // 加载框架引导文件
-require __DIR__ . '/../thinkphp/start.php';
+require __DIR__ . '/thinkphp/start.php';
 //$build=  include '../build.php';
 //think\Build::run($build);
