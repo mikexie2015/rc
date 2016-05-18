@@ -15,4 +15,20 @@ class User extends Base {
         return $this->fetch();
     }
 
+    public function edit() {
+        if (input('uid')) {
+            $user = db('member')->where('uid', input('uid'))->find();
+            return view('', ['user' => $user]);
+        } else {
+            return $this->error('地址错误');
+        }
+    }
+
+    public function update() {
+        if (IS_POST) {
+            d($_POST);
+        } else {
+            return $this->error('违法操作');
+        }
+    }
 }

@@ -14,8 +14,9 @@
         {volist name="user" id="vo"}
         <tr>
             <td class="id">{$vo.uid}</td>
+            <td class="name">{$vo.nickname}</td>
             <td class="name">{$vo.username}</td>
-            <td class="act"><a href="{:url('')}"><span>编辑</span></a><a href="{:url('')}"><span>权限</span></a><a href="{:url('')}"><span>删除</span></a></td>
+            <td class="act"><a href="{:url('edit',['uid'=>$vo.uid])}"><span>编辑</span></a><a href="{:url('')}"><span>权限</span></a><a href="{}"><span>删除</span></a></td>
         </tr>
         {/volist}
     </table>

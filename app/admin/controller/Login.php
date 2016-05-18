@@ -13,7 +13,7 @@ use think\Controller;
 class Login extends Controller {
 
     public function index() {
-        if ($_POST) {
+        if (IS_POST) {
             $user = m('member')->where('username', input('username'))->find();
             if ($user) {
                 if (md5(input('password')) == $user['pwd']) {

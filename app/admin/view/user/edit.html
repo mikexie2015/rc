@@ -1,0 +1,31 @@
+{extend name='public/base' /}
+{block name="head"}
+<title>编辑用户</title>
+{css href="__Css/style.css" /}
+{/block}
+{block name="body"}
+<center>
+    <form action="{:url('update')}" method="post">
+        {foreach name="user" item="vo" }
+        {if condition="$key=='uid'"}
+        <div class="control-group">
+            <label class="control-label">{$key}:{$vo}</label>
+                <input  type="hidden" class="span3" value="{$vo}" name="{$key}">
+        </div>
+        {else /}
+        <div class="control-group">
+            <label class="control-label">{$key}</label>
+            <div class="controls">
+                <input type="text"  class="span3" placeholder="{$vo}" name="{$key}">
+            </div>
+        </div>
+        {/if}
+        {/foreach}
+        <div class="control-group">
+            <div class="controls" id='btn'>
+                <button type="submit" class="btn" >登 陆</button>
+            </div>
+        </div>
+    </form>
+</center>
+{/block}
