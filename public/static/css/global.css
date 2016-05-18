@@ -50,3 +50,9 @@ td span{
 .main{
     width: auto;
 }
+li{
+    list-style: none;
+}
+.footer{
+    border: 10px white solid;
+}

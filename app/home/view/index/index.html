@@ -1,11 +1,14 @@
 {extend name='public/base' /}
 {block name='head'}
-
+<title>首页</title>
 {/block}
 {block name='body'}
-<ul>
-    {volist name='hooks' id='va'}
-    <li>{$va.name}:{$va.addons}</li>
-    {/volist}
-</ul>
+<div class="main">
+    <ul>
+        {volist name='hooks' id='va'}
+        <li>{$va.name}=>{$va.addons}</li>
+        {/volist}
+    </ul>
+</div>
+
 {/block}
