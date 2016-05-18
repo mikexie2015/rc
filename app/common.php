@@ -9,10 +9,10 @@ use think\Config;
  */
 
 function d($param) {
-    dump($param, TRUE, '<pre>');
+    dump($param, TRUE);
 }
 
-function pr($param) {
+function p($param) {
     echo '<pre>' . print_r($param, TRUE) . '<pre>';
 }
 
