@@ -17,6 +17,7 @@ define('APP_PATH', __DIR__ . '/app/');
 define('APP_DEBUG', true);
 define('RUNTIME_PATH', __DIR__.'/runtime/');
 define('APP_HOOK', TRUE);
+define('DOMAIN','http://' .$_SERVER['HTTP_HOST']);
 // 加载框架引导文件
 require __DIR__ . '/thinkphp/start.php';
 //$build=  include '../build.php';
