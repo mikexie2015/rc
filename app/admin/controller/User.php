@@ -24,6 +24,28 @@ class User extends Base {
         }
     }
 
+    public function add() {
+        if (IS_POST) {
+            if (input('pwd') == input('pwd1')) {
+                $add = [
+                    'username' => input('user'),
+                    'nickname' => input('nickname'),
+                    'pwd' => input('pwd'),
+                    'logintime' => time(),
+                    'loginip' => getClientIp(),
+                    'status' => 1,
+                ];
+                if (db('member')->insert($add)) {
+                    return $this->success('添加用户成功');
+                }
+            } else {
+                return $this->error('两次输入密码不一致');
+            }
+        } else {
+            return $this->fetch();
+        }
+    }
+
     public function update() {
         if (IS_POST) {
             d($_POST);
@@ -31,4 +53,5 @@ class User extends Base {
             return $this->error('违法操作');
         }
     }
+
 }

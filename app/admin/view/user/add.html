@@ -1,0 +1,50 @@
+{extend name='public/base' /}
+{block name="head"}
+<title>编辑用户</title>
+{css href="__Css/style.css" /}
+<script>
+    $(document).ready(function () {
+        $("input").click(function () {
+            $(this).attr('placeholder', '你奶奶的');
+        });
+    });
+</script>
+{/block}
+{block name="sidebar"}
+{include file="public/sidebar" /}
+{/block}
+{block name="body"}
+<center>
+    <form action="{:url('add')}" method="post">
+        <div class="control-group">
+            <label class="control-label">用户名</label>
+            <div class="controls">
+                <input  type="text" class="span3" placeholder="用户名" value="" name="user">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">昵称</label>
+            <div class="controls">
+                <input  type="text" class="span3" placeholder="昵称" value="" name="nickname">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">密码</label>
+            <div class="controls">
+                <input type="text"  class="span3" placeholder="输入密码" name="pwd">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">再次密码</label>
+            <div class="controls">
+                <input type="text"  class="span3" placeholder="再次输入密码" name="pwd1">
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls" id='btn'>
+                <button type="submit" class="btn" >添加</button>
+            </div>
+        </div>
+    </form>
+</center>
+{/block}

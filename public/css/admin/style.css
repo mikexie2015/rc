@@ -18,7 +18,7 @@ Copyright (c) 2013 rc All rights reserved.
     border: 4px white solid;
     border-radius: 10px;
     height: 400px;
-    width: 800px;
+    width: 65%;
     margin-left: 3%;
 }
 .login-ad img{
@@ -29,7 +29,7 @@ Copyright (c) 2013 rc All rights reserved.
     padding-left: 10px;
     text-align: center;
     margin-right: 2%;
-    width: 300px;
+    width: 25%;
     height: 300px;
     padding-right: 3%;
 }

@@ -43,6 +43,7 @@ td span{
     width: 20%;
     border: 3px white solid;
     float: left;
+    height: 500px;
 }
 .content{
     border: 3px white solid;

@@ -18,6 +18,8 @@ class Base extends Controller {
         if (!$user || !$uid) {
             echo $this->error('尚未登陆，请登录', url('admin/login/index'));
             exit();
+        } elseif (session('user') == 'admin') {
+            return TRUE;
         } else {
             $rule = strtolower(MODULE_NAME . '/' . CONTROLLER_NAME . '/' . ACTION_NAME);
             if (!$this->check($rule, $uid)) {
