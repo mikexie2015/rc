@@ -20,7 +20,10 @@ class Member extends Model {
 
 //put your code here
     protected $pk = 'uid';
-
+    
+    public function add($param) {
+        
+    }
     public function product() {
         return $this->hasOne('\app\common\model\Product', 'uid');
     }

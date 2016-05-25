@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50617
 File Encoding         : 65001
 
-Date: 2016-05-17 16:12:06
+Date: 2016-05-25 16:46:10
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -90,18 +90,21 @@ CREATE TABLE `auth_rule` (
   `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
   `name` char(80) NOT NULL DEFAULT '' COMMENT '规则唯一标识',
   `title` char(20) NOT NULL DEFAULT '' COMMENT '规则中文名称',
+  `module` varchar(255) NOT NULL,
   `type` tinyint(1) NOT NULL DEFAULT '1',
   `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '状态：为1正常，为0禁用',
   `condition` char(100) NOT NULL DEFAULT '' COMMENT '规则表达式，为空表示存在就验证，不为空表示按照条件验证,# 规则附件条件,满足附加条件的规则,才认为是有效的规则',
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of auth_rule
 -- ----------------------------
-INSERT INTO `auth_rule` VALUES ('1', 'Admin/Index/index', '后台首页', '1', '1', '');
-INSERT INTO `auth_rule` VALUES ('2', 'admin/user/index', '后台用户首页', '1', '1', '');
+INSERT INTO `auth_rule` VALUES ('1', 'Admin/Index/index', '首页', '后台', '1', '1', '');
+INSERT INTO `auth_rule` VALUES ('2', 'admin/user/index', '用户首页', '后台', '1', '1', '');
+INSERT INTO `auth_rule` VALUES ('3', 'admin/user/edit', '用户信息页面', '后台', '1', '1', '');
+INSERT INTO `auth_rule` VALUES ('4', 'admin/user/update', '更新用户', '后台', '1', '1', '');
 
 -- ----------------------------
 -- Table structure for hooks
@@ -141,18 +144,20 @@ DROP TABLE IF EXISTS `member`;
 CREATE TABLE `member` (
   `uid` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) DEFAULT NULL,
+  `nickname` varchar(255) DEFAULT NULL,
   `pwd` varchar(255) DEFAULT NULL,
   `logintime` datetime DEFAULT NULL,
   `loginip` varchar(255) DEFAULT NULL,
   `status` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of member
 -- ----------------------------
-INSERT INTO `member` VALUES ('1', 'admin', 'e10adc3949ba59abbe56e057f20f883e', '0000-00-00 00:00:00', '::1', '1');
-INSERT INTO `member` VALUES ('2', 'youke', '123456', '0000-00-00 00:00:00', '::1', '1');
+INSERT INTO `member` VALUES ('1', 'admin', '', 'e10adc3949ba59abbe56e057f20f883e', '0000-00-00 00:00:00', '127.0.0.1', '1');
+INSERT INTO `member` VALUES ('2', 'youke', null, '123456', '0000-00-00 00:00:00', '::1', '1');
+INSERT INTO `member` VALUES ('3', 'mie', 'mikexie', '123', '0000-00-00 00:00:00', '127.0.0.1', '1');
 
 -- ----------------------------
 -- Table structure for product
@@ -160,13 +165,16 @@ INSERT INTO `member` VALUES ('2', 'youke', '123456', '0000-00-00 00:00:00', '::1
 DROP TABLE IF EXISTS `product`;
 CREATE TABLE `product` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `price` decimal(10,2) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
   `status` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of product
 -- ----------------------------
+INSERT INTO `product` VALUES ('1', '1', 'fire extin', '253.60', 'fadfadfadfa', '1');
+INSERT INTO `product` VALUES ('2', '1', 'bag', '334.30', 'dfadfadfeffe', '1');
