@@ -1,4 +1,5 @@
 <?php
+
 // +----------------------------------------------------------------------
 // | ThinkPHP [ WE CAN DO IT JUST THINK ]
 // +----------------------------------------------------------------------
@@ -11,8 +12,8 @@
 
 namespace think;
 
-class Loader
-{
+class Loader {
+
     // 类名映射
     protected static $map = [];
     // 加载列表
@@ -23,13 +24,12 @@ class Loader
     protected static $namespaceAlias = [];
     // PSR-4
     private static $prefixLengthsPsr4 = [];
-    private static $prefixDirsPsr4    = [];
+    private static $prefixDirsPsr4 = [];
     // PSR-0
     private static $prefixesPsr0 = [];
 
     // 自动加载
-    public static function autoload($class)
-    {
+    public static function autoload($class) {
         // 检测命名空间别名
         if (!empty(self::$namespaceAlias)) {
             $namespace = dirname($class);
@@ -88,8 +88,7 @@ class Loader
     }
 
     // 注册classmap
-    public static function addMap($class, $map = '')
-    {
+    public static function addMap($class, $map = '') {
         if (is_array($class)) {
             self::$map = array_merge(self::$map, $class);
         } else {
@@ -98,8 +97,7 @@ class Loader
     }
 
     // 注册命名空间
-    public static function addNamespace($namespace, $path = '')
-    {
+    public static function addNamespace($namespace, $path = '') {
         if (is_array($namespace)) {
             self::$namespace = array_merge(self::$namespace, $namespace);
         } else {
@@ -108,8 +106,7 @@ class Loader
     }
 
     // 注册命名空间别名
-    public static function addNamespaceAlias($namespace, $original = '')
-    {
+    public static function addNamespaceAlias($namespace, $original = '') {
         if (is_array($namespace)) {
             self::$namespaceAlias = array_merge(self::$namespace, $namespace);
         } else {
@@ -118,8 +115,7 @@ class Loader
     }
 
     // 注册自动加载机制
-    public static function register($autoload = '')
-    {
+    public static function register($autoload = '') {
         // 注册系统自动加载
         spl_autoload_register($autoload ? $autoload : 'think\\Loader::autoload');
         // 注册composer自动加载
@@ -127,8 +123,7 @@ class Loader
     }
 
     // 注册composer自动加载
-    private static function registerComposerLoader()
-    {
+    private static function registerComposerLoader() {
         if (is_file(VENDOR_PATH . 'composer/autoload_namespaces.php')) {
             $map = require VENDOR_PATH . 'composer/autoload_namespaces.php';
             foreach ($map as $namespace => $path) {
@@ -144,7 +139,7 @@ class Loader
                     throw new \InvalidArgumentException("A non-empty PSR-4 prefix must end with a namespace separator.");
                 }
                 self::$prefixLengthsPsr4[$namespace[0]][$namespace] = $length;
-                self::$prefixDirsPsr4[$namespace]                   = (array) $path;
+                self::$prefixDirsPsr4[$namespace] = (array) $path;
             }
         }
 
@@ -163,16 +158,14 @@ class Loader
         }
     }
 
-    private static function composerRequire($fileIdentifier, $file)
-    {
+    private static function composerRequire($fileIdentifier, $file) {
         if (empty($GLOBALS['__composer_autoload_files'][$fileIdentifier])) {
             require $file;
             $GLOBALS['__composer_autoload_files'][$fileIdentifier] = true;
         }
     }
 
-    private static function findFileInComposer($class, $ext = '.php')
-    {
+    private static function findFileInComposer($class, $ext = '.php') {
         // PSR-4 lookup
         $logicalPathPsr4 = strtr($class, '\\', DS) . $ext;
 
@@ -192,7 +185,7 @@ class Loader
         if (false !== $pos = strrpos($class, '\\')) {
             // namespaced class name
             $logicalPathPsr0 = substr($logicalPathPsr4, 0, $pos + 1)
-            . strtr(substr($logicalPathPsr4, $pos + 1), '_', DS);
+                    . strtr(substr($logicalPathPsr4, $pos + 1), '_', DS);
         } else {
             // PEAR-like class name
             $logicalPathPsr0 = strtr($class, '_', DS) . $ext;
@@ -220,10 +213,9 @@ class Loader
      * @param string $ext 导入的文件扩展名
      * @return boolean
      */
-    public static function import($class, $baseUrl = '', $ext = EXT)
-    {
+    public static function import($class, $baseUrl = '', $ext = EXT) {
         static $_file = [];
-        $class        = str_replace(['.', '#'], [DS, '.'], $class);
+        $class = str_replace(['.', '#'], [DS, '.'], $class);
         if (isset($_file[$class . $baseUrl])) {
             return true;
         }
@@ -265,8 +257,7 @@ class Loader
      * @param string $layer 业务层名称
      * @return Object
      */
-    public static function model($name = '', $layer = MODEL_LAYER)
-    {
+    public static function model($name = '', $layer = MODEL_LAYER) {
         static $_model = [];
         if (isset($_model[$name . $layer])) {
             return $_model[$name . $layer];
@@ -298,10 +289,9 @@ class Loader
      * @param string $empty 空控制器名称
      * @return Object|false
      */
-    public static function controller($name, $layer = '', $empty = '')
-    {
+    public static function controller($name, $layer = '', $empty = '') {
         static $_instance = [];
-        $layer            = $layer ?: CONTROLLER_LAYER;
+        $layer = $layer ? : CONTROLLER_LAYER;
         if (isset($_instance[$name . $layer])) {
             return $_instance[$name . $layer];
         }
@@ -312,7 +302,7 @@ class Loader
         }
         $class = self::parseClass($module, $layer, $name);
         if (class_exists($class)) {
-            $action                    = new $class;
+            $action = new $class;
             $_instance[$name . $layer] = $action;
             return $action;
         } elseif ($empty && class_exists($emptyClass = self::parseClass($module, $layer, $empty))) {
@@ -328,13 +318,12 @@ class Loader
      * @param string $layer 验证层名称
      * @return Object|false
      */
-    public static function validate($name = '', $layer = '')
-    {
+    public static function validate($name = '', $layer = '') {
         if (empty($name)) {
             return new Validate;
         }
         static $_instance = [];
-        $layer            = $layer ?: VALIDATE_LAYER;
+        $layer = $layer ? : VALIDATE_LAYER;
         if (isset($_instance[$name . $layer])) {
             return $_instance[$name . $layer];
         }
@@ -363,8 +352,7 @@ class Loader
      * @param mixed $config 数据库配置
      * @return object
      */
-    public static function db($config = [])
-    {
+    public static function db($config = []) {
         return Db::connect($config);
     }
 
@@ -375,12 +363,11 @@ class Loader
      * @param string $layer 要调用的控制层名称
      * @return mixed
      */
-    public static function action($url, $vars = [], $layer = CONTROLLER_LAYER)
-    {
-        $info   = pathinfo($url);
+    public static function action($url, $vars = [], $layer = CONTROLLER_LAYER) {
+        $info = pathinfo($url);
         $action = $info['basename'];
         $module = '.' != $info['dirname'] ? $info['dirname'] : CONTROLLER_NAME;
-        $class  = self::controller($module, $layer);
+        $class = self::controller($module, $layer);
         if ($class) {
             if (is_scalar($vars)) {
                 if (strpos($vars, '=')) {
@@ -392,6 +379,7 @@ class Loader
             return App::invokeMethod([$class, $action . Config::get('action_suffix')], $vars);
         }
     }
+
     /**
      * 取得对象实例 支持调用类的静态方法
      *
@@ -401,10 +389,9 @@ class Loader
      * @return mixed
      * @throws Exception
      */
-    public static function instance($class, $method = '')
-    {
+    public static function instance($class, $method = '') {
         static $_instance = [];
-        $identify         = $class . $method;
+        $identify = $class . $method;
         if (!isset($_instance[$identify])) {
             if (class_exists($class)) {
                 $o = new $class();
@@ -427,10 +414,11 @@ class Loader
      * @param integer $type 转换类型
      * @return string
      */
-    public static function parseName($name, $type = 0)
-    {
+    public static function parseName($name, $type = 0) {
         if ($type) {
-            return ucfirst(preg_replace_callback('/_([a-zA-Z])/', function ($match) {return strtoupper($match[1]);}, $name));
+            return ucfirst(preg_replace_callback('/_([a-zA-Z])/', function ($match) {
+                        return strtoupper($match[1]);
+                    }, $name));
         } else {
             return strtolower(trim(preg_replace("/[A-Z]/", "_\\0", $name), "_"));
         }
@@ -443,12 +431,12 @@ class Loader
      * @param string $name 类名
      * @return string
      */
-    public static function parseClass($module, $layer, $name)
-    {
-        $name  = str_replace(['/', '.'], '\\', $name);
+    public static function parseClass($module, $layer, $name) {
+        $name = str_replace(['/', '.'], '\\', $name);
         $array = explode('\\', $name);
         $class = self::parseName(array_pop($array), 1) . (CLASS_APPEND_SUFFIX ? ucfirst($layer) : '');
-        $path  = $array ? implode('\\', $array) . '\\' : '';
+        $path = $array ? implode('\\', $array) . '\\' : '';
         return APP_NAMESPACE . '\\' . (APP_MULTI_MODULE ? $module . '\\' : '') . $layer . '\\' . $path . $class;
     }
+
 }

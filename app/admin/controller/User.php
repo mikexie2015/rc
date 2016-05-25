@@ -4,11 +4,15 @@ namespace app\admin\controller;
 
 use think\Controller;
 use app\common\controller\Base;
+use app\admin\model\Member;
 
 class User extends Base {
 
     public function index() {
-        $user = db('member')->select();
+//        $user = \app\admin\model\Member::all();
+        $user = model('member')->get('1');
+        d($user->product->toarray());die;
+//        $user = db('member')->select();
         $this->assign([
             'user' => $user,
         ]);

@@ -676,7 +676,7 @@ abstract class Model implements \JsonSerializable, \ArrayAccess
             array_pop($path);
             array_push($path, Loader::parseName($model, 1));
             $model = implode('\\', $path);
-        }
+        }   
         return $model;
     }
 
