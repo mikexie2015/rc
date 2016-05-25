@@ -10,9 +10,7 @@ class User extends Base {
 
     public function index() {
 //        $user = \app\admin\model\Member::all();
-        $user = model('member')->get('1');
-        d($user->product->toarray());die;
-//        $user = db('member')->select();
+        $user = model('member')->all();
         $this->assign([
             'user' => $user,
         ]);
@@ -39,8 +37,8 @@ class User extends Base {
                     'loginip' => getClientIp(),
                     'status' => 1,
                 ];
-                if (db('member')->insert($add)) {
-                    return $this->success('添加用户成功');
+                if (model('member')->add($add)) {
+                    return $this->success('添加用户成功','index');
                 }
             } else {
                 return $this->error('两次输入密码不一致');
