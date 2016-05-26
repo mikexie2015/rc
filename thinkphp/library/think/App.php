@@ -1,4 +1,5 @@
 <?php
+
 // +----------------------------------------------------------------------
 // | ThinkPHP [ WE CAN DO IT JUST THINK ]
 // +----------------------------------------------------------------------
@@ -15,8 +16,7 @@ namespace think;
  * App 应用管理
  * @author  liu21st <liu21st@gmail.com>
  */
-class App
-{
+class App {
 
     // 应用调度机制
     private static $dispatch = [];
@@ -26,8 +26,7 @@ class App
      * @access public
      * @return void
      */
-    public static function run()
-    {
+    public static function run() {
         // 初始化应用（公共模块）
         self::initModule(COMMON_MODULE, Config::get());
 
@@ -110,18 +109,16 @@ class App
     }
 
     // 执行函数或者闭包方法 支持参数调用
-    public static function invokeFunction($function, $vars = [])
-    {
+    public static function invokeFunction($function, $vars = []) {
         $reflect = new \ReflectionFunction($function);
-        $args    = self::bindParams($reflect, $vars);
+        $args = self::bindParams($reflect, $vars);
         // 记录执行信息
         APP_DEBUG && Log::record('[ RUN ] ' . $reflect->getFileName() . '[ ' . var_export($vars, true) . ' ]', 'info');
         return $reflect->invokeArgs($args);
     }
 
     // 调用反射执行类的方法 支持参数绑定
-    public static function invokeMethod($method, $vars = [])
-    {
+    public static function invokeMethod($method, $vars = []) {
         if (empty($vars)) {
             // 自动获取请求变量
             switch (REQUEST_METHOD) {
@@ -140,7 +137,7 @@ class App
             }
         }
         if (is_array($method)) {
-            $class   = is_object($method[0]) ? $method[0] : new $method[0];
+            $class = is_object($method[0]) ? $method[0] : new $method[0];
             $reflect = new \ReflectionMethod($class, $method[1]);
         } else {
             // 静态方法
@@ -153,8 +150,7 @@ class App
     }
 
     // 绑定参数
-    private static function bindParams($reflect, $vars)
-    {
+    private static function bindParams($reflect, $vars) {
         $args = [];
         // 判断数组类型 数字数组时按顺序绑定参数
         $type = key($vars) === 0 ? 1 : 0;
@@ -179,11 +175,10 @@ class App
     }
 
     // 执行 模块/控制器/操作
-    private static function module($result, $config)
-    {
+    private static function module($result, $config) {
         if (APP_MULTI_MODULE) {
             // 多模块部署
-            $module = strtolower($result[0] ?: $config['default_module']);
+            $module = strtolower($result[0] ? : $config['default_module']);
             if ($maps = $config['url_module_map']) {
                 if (isset($maps[$module])) {
                     // 记录当前别名
@@ -201,7 +196,7 @@ class App
             // 模块初始化
             if (MODULE_NAME && !in_array(MODULE_NAME, $config['deny_module_list']) && is_dir(APP_PATH . MODULE_NAME)) {
                 define('MODULE_PATH', APP_PATH . MODULE_NAME . DS);
-                define('VIEW_PATH', MODULE_PATH . VIEW_LAYER . DS);
+                define('VIEW_PATH', ROOT_PATH . VIEW_LAYER . DS . MODULE_NAME . DS) ;
                 // 初始化模块
                 self::initModule(MODULE_NAME, $config);
             } else {
@@ -215,11 +210,11 @@ class App
         }
 
         // 获取控制器名
-        $controllerName = strip_tags($result[1] ?: Config::get('default_controller'));
+        $controllerName = strip_tags($result[1] ? : Config::get('default_controller'));
         defined('CONTROLLER_NAME') or define('CONTROLLER_NAME', Config::get('url_controller_convert') ? strtolower($controllerName) : $controllerName);
 
         // 获取操作名
-        $actionName = strip_tags($result[2] ?: Config::get('default_action'));
+        $actionName = strip_tags($result[2] ? : Config::get('default_action'));
         defined('ACTION_NAME') or define('ACTION_NAME', Config::get('url_action_convert') ? strtolower($actionName) : $actionName);
 
         // 执行操作
@@ -245,7 +240,7 @@ class App
             // 操作不存在
             if (method_exists($instance, '_empty')) {
                 $method = new \ReflectionMethod($instance, '_empty');
-                $data   = $method->invokeArgs($instance, [$action, '']);
+                $data = $method->invokeArgs($instance, [$action, '']);
                 APP_DEBUG && Log::record('[ RUN ] ' . $method->getFileName(), 'info');
             } else {
                 throw new Exception('method [ ' . (new \ReflectionClass($instance))->getName() . '->' . $action . ' ] not exists ', 10002);
@@ -255,8 +250,7 @@ class App
     }
 
     // 初始化模块
-    private static function initModule($module, $config)
-    {
+    private static function initModule($module, $config) {
         // 定位模块目录
         $module = (COMMON_MODULE == $module || !APP_MULTI_MODULE) ? '' : $module . DS;
 
@@ -304,8 +298,7 @@ class App
     }
 
     // 分析 PATH_INFO
-    private static function parsePathinfo(array $config)
-    {
+    private static function parsePathinfo(array $config) {
         if (isset($_GET[$config['var_pathinfo']])) {
             // 判断URL里面是否有兼容模式参数
             $_SERVER['PATH_INFO'] = $_GET[$config['var_pathinfo']];
@@ -322,7 +315,7 @@ class App
             foreach ($config['pathinfo_fetch'] as $type) {
                 if (!empty($_SERVER[$type])) {
                     $_SERVER['PATH_INFO'] = (0 === strpos($_SERVER[$type], $_SERVER['SCRIPT_NAME'])) ?
-                    substr($_SERVER[$type], strlen($_SERVER['SCRIPT_NAME'])) : $_SERVER[$type];
+                            substr($_SERVER[$type], strlen($_SERVER['SCRIPT_NAME'])) : $_SERVER[$type];
                     break;
                 }
             }
@@ -335,8 +328,7 @@ class App
      * @param  array $config
      * @throws Exception
      */
-    public static function route(array $config)
-    {
+    public static function route(array $config) {
         // 解析PATH_INFO
         self::parsePathinfo($config);
 
@@ -357,7 +349,7 @@ class App
             $_SERVER['PATH_INFO'] = preg_replace($config['url_html_suffix'] ? '/\.(' . trim($config['url_html_suffix'], '.') . ')$/i' : '/\.' . __EXT__ . '$/i', '', __INFO__);
         }
 
-        $depr   = $config['pathinfo_depr'];
+        $depr = $config['pathinfo_depr'];
         $result = false;
         // 路由检测
         if (APP_ROUTE_ON && !empty($config['url_route_on'])) {
@@ -384,8 +376,8 @@ class App
     }
 
     // 指定应用调度
-    public static function dispatch($dispatch)
-    {
+    public static function dispatch($dispatch) {
         self::$dispatch = $dispatch;
     }
+
 }

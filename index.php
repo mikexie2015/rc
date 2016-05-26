@@ -20,5 +20,6 @@ define('APP_HOOK', TRUE);
 define('DOMAIN','http://' .$_SERVER['HTTP_HOST']);
 // 加载框架引导文件
 require __DIR__ . '/thinkphp/start.php';
+
 //$build=  include '../build.php';
 //think\Build::run($build);
