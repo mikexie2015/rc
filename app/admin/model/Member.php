@@ -8,7 +8,6 @@
 namespace app\admin\model;
 
 use think\Model;
-use think\model\Merge;
 
 /**
  * Description of Member
@@ -19,14 +18,6 @@ class Member extends Model {
 
 //put your code here
     protected $pk = 'uid';
-
-    public function add($param) {
-        if ($this->data($param)->save()) {
-            return TRUE;
-        } else {
-            return FALSE;
-        }
-    }
 
     public function product() {
         return $this->hasOne('\app\common\model\Product', 'uid');
