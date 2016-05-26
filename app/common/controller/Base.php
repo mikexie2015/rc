@@ -1,8 +1,9 @@
 <?php
 
-/*
- * Copyright (c) 2013 rc All rights reserved.
- *  Author: Mike 
+/**
+ * 公共类，控制访问权限及session
+ *@Copyright (c) 2013 rc All rights reserved.
+ *  @Author Mike 
  */
 
 namespace app\common\controller;

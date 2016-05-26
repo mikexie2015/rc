@@ -1,8 +1,9 @@
+<#assign licenseFirst = "/**">
 <#if licenseFirst??>
 ${licenseFirst}
 </#if>
-${licensePrefix}Copyright (c) 2013 rc All rights reserved.
-${licensePrefix} Author: Mike 
+${licensePrefix}@Copyright (c) 2016 rc All rights reserved.
+${licensePrefix} @Author: Mikexie<1413519894@qq.com> 
 <#if licenseLast??>
 ${licenseLast}
 </#if>
