@@ -9,9 +9,6 @@ class User extends Base {
 
     public function index() {
         $user = model('user')->all();
-        foreach ($user as $v) {
-            d($v);
-        }die;
         $this->assign([
             'user' => $user,
         ]);
