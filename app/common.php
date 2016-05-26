@@ -5,16 +5,24 @@ use think\Cache;
 use think\Config;
 
 /*
- * 打印函数
+ * 打印函数,dump
  */
 
 function d($param) {
     dump($param, TRUE);
 }
 
+/*
+ * 打印函数，print_r
+ */
+
 function p($param) {
     echo '<pre>' . print_r($param, TRUE) . '<pre>';
 }
+
+/*
+ * 钩子监听函数
+ */
 
 function hook($tags, $param) {
     think\Hook::listen($tag, $params);
@@ -54,4 +62,20 @@ function c($name = '', $value = null, $range = '') {
 
 function getClientIp() {
     return $_SERVER['REMOTE_ADDR'];
+}
+
+/*
+ * 将字符串转为数组,分隔符为','
+ */
+
+function str2arr($param) {
+    return explode($glue = ',', $param);
+}
+
+/*
+ * 将数组转为字符串,分隔符为','
+ */
+
+function arr2str($param) {
+    return implode($glue = ',', $param);
 }
