@@ -4,13 +4,14 @@ namespace app\admin\controller;
 
 use think\Controller;
 use app\common\controller\Base;
-use app\admin\model\Member;
 
 class User extends Base {
 
     public function index() {
-//        $user = \app\admin\model\Member::all();
-        $user = model('member')->all();
+        $user = model('user')->all();
+        foreach ($user as $v) {
+            d($v);
+        }die;
         $this->assign([
             'user' => $user,
         ]);
@@ -38,7 +39,7 @@ class User extends Base {
                     'status' => 1,
                 ];
                 if (model('member')->add($add)) {
-                    return $this->success('添加用户成功','index');
+                    return $this->success('添加用户成功', 'index');
                 }
             } else {
                 return $this->error('两次输入密码不一致');

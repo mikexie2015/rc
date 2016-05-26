@@ -14,8 +14,13 @@ use think\Model;
  *
  * @author Administrator
  */
-class Product extends Model{
+class Product extends Model {
+
     //put your code here
-    protected $pk='pid';
-    
+    protected $pk = 'pid';
+
+    public function user() {
+        return $this->belongsTo('\app\admin\model\User','uid');
+    }
+
 }
