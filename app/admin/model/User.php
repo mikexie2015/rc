@@ -8,9 +8,11 @@ class User extends Model {
 
     protected $pk = 'uid';
     protected static $table = 'member';
+    protected $validate = [
+    ];
 
     public function product() {
-        return $this->hasOne('\app\common\model\Product', 'uid');
+        return $this->hasMany('\app\common\model\Product', 'uid');
     }
 
 }

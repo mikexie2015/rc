@@ -1,9 +1,9 @@
-<#assign licenseFirst = "/**">
+<#assign user = "Mikexie <1413519894@qq.com ">
 <#if licenseFirst??>
 ${licenseFirst}
 </#if>
 ${licensePrefix}@Copyright (c) 2016 rc All rights reserved.
-${licensePrefix} @Author: Mikexie<1413519894@qq.com> 
+${licensePrefix}@Author: ${user}
 <#if licenseLast??>
 ${licenseLast}
 </#if>
