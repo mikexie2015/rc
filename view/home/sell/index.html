@@ -1,0 +1,14 @@
+{extend name='public/base' /}
+{block name='head'}
+<title>首页</title>
+{/block}
+{block name='body'}
+<div class="main">
+    <ul>
+        {volist name='sell' id='vo'}
+        <li>{$vo.name}=>{$vo.description}=>{$vo.user.username}</li>
+        {/volist}
+    </ul>
+</div>
+
+{/block}
