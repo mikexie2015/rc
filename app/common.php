@@ -17,7 +17,11 @@ function d($param) {
  */
 
 function p($param) {
-    echo '<pre>' . print_r($param, TRUE) . '<pre>';
+    if ($param == FALSE) {
+        dump($param);
+    } else {
+        echo '<pre>' . print_r($param, TRUE) . '<pre>';
+    }
 }
 
 /*

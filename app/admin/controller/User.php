@@ -8,8 +8,7 @@ use app\common\controller\Base;
 class User extends Base {
 
     public function index() {
-        $user = model('user')->all('','product');
-        p($user);die;
+        $user = model('user')->all('', 'product');
         $this->assign([
             'user' => $user,
         ]);
