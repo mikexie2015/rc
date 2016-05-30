@@ -1,4 +1,5 @@
 <?php
+
 // +----------------------------------------------------------------------
 // | ThinkPHP [ WE CAN DO IT JUST THINK ]
 // +----------------------------------------------------------------------
@@ -14,8 +15,8 @@ namespace think;
 /**
  * ThinkPHP 数据库中间层实现类
  */
-class Db
-{
+class Db {
+
     //  数据库连接实例
     private static $instances = [];
     //  当前数据库连接实例
@@ -32,8 +33,7 @@ class Db
      * @param mixed $config 连接配置
      * @return Object 返回数据库驱动类
      */
-    public static function connect($config = [])
-    {
+    public static function connect($config = []) {
         $md5 = md5(serialize($config));
         if (!isset(self::$instances[$md5])) {
             // 解析连接参数 支持数组和字符串
@@ -41,7 +41,7 @@ class Db
             if (empty($options['type'])) {
                 throw new Exception('db type error');
             }
-            $class                 = (!empty($options['namespace']) ? $options['namespace'] : '\\think\\db\\connector\\') . ucwords($options['type']);
+            $class = (!empty($options['namespace']) ? $options['namespace'] : '\\think\\db\\connector\\') . ucwords($options['type']);
             self::$instances[$md5] = new $class($options);
             // 记录初始化信息
             APP_DEBUG && Log::record('[ DB ] INIT ' . $options['type'] . ':' . var_export($options, true), 'info');
@@ -57,8 +57,7 @@ class Db
      * @param mixed $config
      * @return array
      */
-    private static function parseConfig($config)
-    {
+    private static function parseConfig($config) {
         if (empty($config)) {
             $config = Config::get('database');
         } elseif (is_string($config) && false === strpos($config, '/')) {
@@ -80,20 +79,19 @@ class Db
      * @param string $dsnStr
      * @return array
      */
-    private static function parseDsn($dsnStr)
-    {
+    private static function parseDsn($dsnStr) {
         $info = parse_url($dsnStr);
         if (!$info) {
             return [];
         }
         $dsn = [
-            'type'     => $info['scheme'],
+            'type' => $info['scheme'],
             'username' => isset($info['user']) ? $info['user'] : '',
             'password' => isset($info['pass']) ? $info['pass'] : '',
             'hostname' => isset($info['host']) ? $info['host'] : '',
             'hostport' => isset($info['port']) ? $info['port'] : '',
             'database' => !empty($info['path']) ? ltrim($info['path'], '/') : '',
-            'charset'  => isset($info['fragment']) ? $info['fragment'] : 'utf8',
+            'charset' => isset($info['fragment']) ? $info['fragment'] : 'utf8',
         ];
 
         if (isset($info['query'])) {
@@ -105,12 +103,12 @@ class Db
     }
 
     // 调用驱动类的方法
-    public static function __callStatic($method, $params)
-    {
+    public static function __callStatic($method, $params) {
         if (is_null(self::$instance)) {
             // 自动初始化数据库
             self::connect();
         }
         return call_user_func_array([self::$instance, $method], $params);
     }
+
 }

@@ -514,8 +514,6 @@ abstract class Model implements \JsonSerializable, \ArrayAccess {
      */
     public static function all($data = [], $with = [], $cache = false) {
         $query = self::parseQuery($data, $with, $cache);
-        p($query);
-        die;
         return $query->select($data);
     }
 
