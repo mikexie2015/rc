@@ -1,0 +1,29 @@
+{extend name='public/base' /}
+{block name="head"}
+<title>用户管理</title>
+{css href="__Css/style.css" /}
+{/block}
+{block name="sidebar"}
+{include file="public/sidebar" /}
+{/block}
+{block name="body"}
+<center>
+    <table border="1">
+        <tr>
+            <th>产品id</th>
+            <th>名称</th>
+            <th>价格</th>
+            <th>描述</th>
+        </tr>
+        {volist name="list" id="vo"}
+        <tr>
+            <td class="id">{$vo.uid}</td>
+            <td class="name">{$vo.name}</td>
+            <td class="name">{$vo.price}</td>
+            <td class="name">{$vo.description}</td>
+            <td class="act"><a href="{:url('edit',['uid'=>$vo.uid])}"><span>编辑</span></a><a href="{:url('')}"><span>权限</span></a><a href="{}"><span>删除</span></a></td>
+        </tr>
+        {/volist}
+    </table>
+</center>
+{/block}
