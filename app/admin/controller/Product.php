@@ -18,9 +18,9 @@ class Product extends Controller {
     //put your code here
     public function index() {
 //            $list= model('Product')->with('user')->all();
-        $list = model('product')->all([], 'user');
+        $list = model('product')->all('', 'user');
         $this->assign([
-            'list'=>$list,
+            'list' => $list,
         ]);
         return $this->fetch();
     }

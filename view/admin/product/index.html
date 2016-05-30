@@ -14,13 +14,15 @@
             <th>名称</th>
             <th>价格</th>
             <th>描述</th>
+            <th>用户</th>
         </tr>
         {volist name="list" id="vo"}
         <tr>
-            <td class="id">{$vo.uid}</td>
+            <td class="id">{$vo.id}</td>
             <td class="name">{$vo.name}</td>
             <td class="name">{$vo.price}</td>
             <td class="name">{$vo.description}</td>
+            <td class="name">{$vo.user.username}</td>
             <td class="act"><a href="{:url('edit',['uid'=>$vo.uid])}"><span>编辑</span></a><a href="{:url('')}"><span>权限</span></a><a href="{}"><span>删除</span></a></td>
         </tr>
         {/volist}
