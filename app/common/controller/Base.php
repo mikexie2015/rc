@@ -2,7 +2,7 @@
 
 /**
  * 公共类，控制访问权限及session
- *@Copyright (c) 2013 rc All rights reserved.
+ * @Copyright (c) 2013 rc All rights reserved.
  *  @Author Mike 
  */
 
@@ -17,7 +17,11 @@ class Base extends Controller {
         $user = session('user');
         $uid = session('uid');
         if (!$user || !$uid) {
-            echo $this->error('尚未登陆，请登录', url('admin/login/index'));
+            if (MODULE_NAME=='admin') {
+                echo $this->error('尚未登陆，请登录', url('admin/login/index'));
+            }  else {
+                echo $this->error('尚未登录，请登录',url('home/user/login'));
+            }
             exit();
         } elseif (session('user') == 'admin') {
             return TRUE;
