@@ -20,7 +20,7 @@ class Base extends Controller {
             if (MODULE_NAME=='admin') {
                 echo $this->error('尚未登陆，请登录', url('admin/login/index'));
             }  else {
-                echo $this->error('尚未登录，请登录',url('home/user/login'));
+                echo $this->error('尚未登录，请登录',url('home/login/index'));
             }
             exit();
         } elseif (session('user') == 'admin') {
