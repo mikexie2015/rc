@@ -1,0 +1,42 @@
+/*
+Copyright (c) 2013 rc All rights reserved.
+ Author: Mike 
+*/
+.fl{
+    float: left;
+}
+.fr{
+    float: right;
+}
+.br{
+    border:solid;
+}
+#btn{
+    text-align: center;
+}
+.login-ad{
+    border: 4px white solid;
+    border-radius: 10px;
+    height: 400px;
+    width: 65%;
+    margin-left: 3%;
+}
+.login-ad img{
+    border-radius: 10px;
+}
+.login{
+    /*border: 2px white solid;*/
+    padding-left: 10px;
+    text-align: center;
+    margin-right: 2%;
+    width: 25%;
+    height: 300px;
+    padding-right: 3%;
+}
+.loginHhead{
+    /*text-align: center;*/
+}
+.controls input{
+    width: 300px;
+    height: 30px;
+}
